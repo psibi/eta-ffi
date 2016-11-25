@@ -14,5 +14,8 @@ main = do
       tz = getTZ cal
            
   print $ unpackCString tz
+        
+  let names = getNames
+      print $ map unpackCString (conv names)
   
   
