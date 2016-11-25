@@ -22,4 +22,9 @@ public class Utils {
         cal.setTimeZone(TimeZone.getTimeZone("UTC"));
         return cal;
     }
+    
+    public static String[] getNames() {
+        String[] names = {"sibi", "alex", "rahul"};
+        return names;
+    }
 }
