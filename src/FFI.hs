@@ -32,3 +32,16 @@ conv :: JStringArray -> [JString]
 conv arr = map (unsafeCast . arrayGet arr) [0..len - 1] 
     where len = getLength arr
           arr' = newArray (getClass "java/lang/String") len
+
+
+-- Enums
+
+data {-# CLASS "java.nio.file.attribute.PosixFilePermission" #-} PosixFilePermission = PosixFilePermission (Object# PosixFilePermission)
+
+foreign import java unsafe "java.lang.Enum.name" name :: (Extends a Object) => a -> JString
+
+instance Class PosixFilePermission where
+  unobj (PosixFilePermission x) = x
+  obj = PosixFilePermission
+
+foreign import java unsafe "@static @enum java.nio.file.attribute.PosixFilePermission.OWNER_READ" oWNER_READ :: PosixFilePermission
