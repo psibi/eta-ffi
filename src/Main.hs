@@ -13,6 +13,4 @@ main = do
   print $ unpackCString tz
   let names = getNames
   print $ map unpackCString (conv names)
-
-  let ownerRead = name oWNER_READ
-  print $ unpackCString ownerRead
+  print $ unpackCString $ name oWNER_READ

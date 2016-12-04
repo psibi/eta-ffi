@@ -34,14 +34,22 @@ conv arr = map (unsafeCast . arrayGet arr) [0..len - 1]
           arr' = newArray (getClass "java/lang/String") len
 
 
--- Enums
+-- Enum Example
 
 data {-# CLASS "java.nio.file.attribute.PosixFilePermission" #-} PosixFilePermission = PosixFilePermission (Object# PosixFilePermission)
-
-foreign import java unsafe "java.lang.Enum.name" name :: (Extends a Object) => a -> JString
 
 instance Class PosixFilePermission where
   unobj (PosixFilePermission x) = x
   obj = PosixFilePermission
 
-foreign import java unsafe "@static @enum java.nio.file.attribute.PosixFilePermission.OWNER_READ" oWNER_READ :: PosixFilePermission
+foreign import java unsafe "@static @field java.nio.file.attribute.PosixFilePermission.OWNER_READ" oWNER_READ :: PosixFilePermission
+
+data {-# CLASS "java.lang.Enum" #-} JEnum a = JEnum (Object# (JEnum a)) 
+
+instance Class (JEnum a) where
+  unobj (JEnum x) = x
+  obj = JEnum
+
+type instance Inherits PosixFilePermission = '[JEnum PosixFilePermission]
+
+foreign import java unsafe name :: (Extends a (JEnum a)) => a -> JString
