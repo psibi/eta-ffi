@@ -27,4 +27,14 @@ public class Utils {
         String[] names = {"sibi", "alex", "rahul"};
         return names;
     }
+    
+    public static long[] someLongExample() {
+        long[] x = {1L, 2L, 3L};
+        return x;
+    }
+
+    public static long[] someLongExample2(long[] y) {
+        return y;
+    }
+    
 }
